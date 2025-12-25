@@ -15,8 +15,10 @@ export default function CartIcon() {
     // カートが更新されたら反映する（簡易版）
     window.addEventListener("cartUpdated", () => {
       const cart = getCart();
-      const total = cart.reduce((sum, item) => sum + item.quantity, 0);
-      setCount(total);
+      const total = cart.reduce(
+        (sum: number, item: { quantity: number }) => sum + item.quantity,
+        0
+      );
     });
   }, []);
 
