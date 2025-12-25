@@ -1,15 +1,15 @@
 "use client";
 
-import { getCart, clearCart } from "@/lib/cart";
 import { useEffect, useState } from "react";
+import { getCart, clearCart } from "@/lib/cart";
 
-/** カート内商品の型 */
+/** カート内商品の型定義 */
 type CartItem = {
   id: string;
   name: string;
   price: number;
   quantity: number;
-  image_url?: string | null;
+  image_url?: string;
 };
 
 export default function CartPage() {
@@ -39,12 +39,12 @@ export default function CartPage() {
         カート
       </h1>
 
-      {/* 空の場合 */}
       {cart.length === 0 && (
-        <p style={{ fontSize: 18, color: "#555" }}>カートは空です。</p>
+        <p style={{ fontSize: 18, color: "#555" }}>
+          カートは空です。
+        </p>
       )}
 
-      {/* 商品一覧 */}
       {cart.map((item) => (
         <div
           key={item.id}
@@ -63,12 +63,14 @@ export default function CartPage() {
               width: 120,
               height: 120,
               objectFit: "cover",
-              borderRadius: 12,
+              borderRadius: 10,
             }}
           />
 
           <div style={{ flex: 1 }}>
-            <h2 style={{ fontSize: 20, fontWeight: 500 }}>{item.name}</h2>
+            <h2 style={{ fontSize: 20, fontWeight: 500 }}>
+              {item.name}
+            </h2>
             <p style={{ marginTop: 6 }}>
               ¥{item.price} × {item.quantity}
             </p>
@@ -79,10 +81,9 @@ export default function CartPage() {
         </div>
       ))}
 
-      {/* 合計 */}
       {cart.length > 0 && (
         <div style={{ marginTop: 40 }}>
-          <h2 style={{ fontSize: 24, fontWeight: 600, marginBottom: 20 }}>
+          <h2 style={{ fontSize: 24, fontWeight: 600 }}>
             合計: ¥{total}
           </h2>
 
@@ -94,10 +95,10 @@ export default function CartPage() {
             style={{
               width: "100%",
               padding: "14px 0",
-              background: "#e5e5e5",
-              borderRadius: 14,
+              marginTop: 20,
+              borderRadius: 12,
               border: "none",
-              marginBottom: 16,
+              background: "#ccc",
               cursor: "pointer",
             }}
           >
@@ -112,10 +113,11 @@ export default function CartPage() {
             style={{
               width: "100%",
               padding: "16px 0",
-              background: "#0071e3",
-              color: "#fff",
+              marginTop: 20,
               borderRadius: 30,
               border: "none",
+              background: "#0071e3",
+              color: "white",
               fontSize: 18,
               cursor: "pointer",
             }}
