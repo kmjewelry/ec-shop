@@ -9,7 +9,6 @@ export default async function ProductsPage() {
     .select('*');
 
   if (error) {
-    console.error(error);
     return <div>エラーが発生しました</div>;
   }
 
